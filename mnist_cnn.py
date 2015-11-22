@@ -41,12 +41,10 @@ nb_pool = 2
 # Convolution kernel size
 nb_conv = 3
 
-# Convert class vectors to binary class matrices
-
+# Model definition
 model = Sequential()
 
-model.add(Convolution2D(nb_filters, nb_conv, nb_conv,
-                        border_mode='full',
+model.add(Convolution2D(nb_filters, nb_conv, nb_conv, border_mode='full',
                         input_shape=(1, img_rows, img_cols)))
 model.add(Activation('relu'))
 model.add(Convolution2D(nb_filters, nb_conv, nb_conv))
@@ -62,10 +60,10 @@ model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adadelta')
-
 model.fit(X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch, show_accuracy=True, verbose=1)
-y_test = model.predict(X_test, verbose=1)
 
+# Predict on the test data
+y_test = model.predict(X_test, verbose=1)
 np.save('predict', y_test)
 
 y_test = np.argmax(y_test,1)
