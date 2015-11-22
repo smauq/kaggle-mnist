@@ -16,7 +16,6 @@ nb_classes = 10
 
 # Load the training data
 X_train = pd.read_csv('train.csv').as_matrix()
-X_train = X_train[1:]
 
 # Separate features and labels
 y_train = X_train[:,0]
@@ -27,7 +26,6 @@ X_train = X_train.astype("float32") / 255
 
 # Load the test data
 X_test = pd.read_csv('test.csv').as_matrix()
-X_test = X_test[1:]
 X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
 X_test = X_test.astype("float32") / 255
 
