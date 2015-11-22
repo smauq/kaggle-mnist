@@ -3,6 +3,7 @@
 import numpy as np
 import sys
 import cv2
+import pandas as pd
 
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
@@ -14,7 +15,7 @@ img_rows, img_cols = 28, 28
 nb_classes = 10
 
 # Load the training data
-X_train = np.genfromtxt('train.csv', delimiter=',')
+X_train = pd.read_csv('train.csv').as_matrix()
 X_train = X_train[1:]
 
 # Separate features and labels
@@ -25,7 +26,7 @@ X_train = X_train[:,1:].reshape(X_train.shape[0], 1, img_rows, img_cols)
 X_train = X_train.astype("float32") / 255
 
 # Load the test data
-X_test = np.genfromtxt('test.csv', delimiter=',')
+X_test = pd.read_csv('test.csv').as_matrix()
 X_test = X_test[1:]
 X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
 X_test = X_test.astype("float32") / 255
