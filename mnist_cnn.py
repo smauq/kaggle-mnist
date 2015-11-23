@@ -31,14 +31,14 @@ X_test = X_test.astype("float32") / 255
 
 # Initialize network
 batch_size = 128
-nb_epoch = 16
+nb_epoch = 20
 
 # Number of convolutional filters to use
 nb_filters = 32
 # Size of pooling area for max pooling
 nb_pool = 2
 # Convolution kernel size
-nb_conv = 3
+nb_conv = 5
 
 # Model definition
 model = Sequential()
@@ -52,13 +52,13 @@ model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(128))
+model.add(Dense(4096))
 model.add(Activation('relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.75))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 
-model.compile(loss='categorical_crossentropy', optimizer='adadelta')
+model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 model.fit(X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch, show_accuracy=True, verbose=1)
 
 # Predict on the test data
