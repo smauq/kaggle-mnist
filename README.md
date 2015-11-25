@@ -1,0 +1,1 @@
+Digit recognizer using convolutional neural networks in Keras, with a precision of 99.1%.
