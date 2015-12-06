@@ -43,10 +43,10 @@ nb_conv = 5
 # Model definition
 model = Sequential()
 
-model.add(Convolution2D(nb_filters, nb_conv, nb_conv, border_mode='full',
+model.add(Convolution2D(nb_filters, nb_conv, nb_conv, border_mode='valid',
                         input_shape=(1, img_rows, img_cols)))
 model.add(Activation('relu'))
-model.add(Convolution2D(nb_filters, nb_conv, nb_conv))
+model.add(Convolution2D(nb_filters, nb_conv, nb_conv, border_mode='valid'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
 model.add(Dropout(0.25))
